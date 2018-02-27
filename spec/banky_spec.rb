@@ -5,8 +5,10 @@ describe 'Banky' do
   error_digits = 'data/test_digits_with_errors.txt'
   let (:parsed) { parse_txt_file(digits) }
   let(:separated) { separate_digit_lines(parsed) }
+  let(:cleaned) { clean_digit_lines(separated) }
+  let(:generated) { generate_digit_strings(cleaned) }
   test_subarray =  ["    _  _     _  _  _  _  _ ",
-                    "  | _| _||_||_ |_   ||_||_|",
+                    "  | _| _||_||_ |_    |_||_|",
                     "  ||_  _|  | _||_|  ||_| _|"]
 
   describe '#parse_txt_file' do
@@ -14,7 +16,7 @@ describe 'Banky' do
         expect(parse_txt_file(digits)).to be_an_instance_of(Array)
       end
 
-      it 'returns an array filled with strings' do
+      it 'that is filled with strings' do
         def string_check(parsed)
           parsed.each do |element|
             if element.class != String
@@ -32,7 +34,7 @@ describe 'Banky' do
         expect(separate_digit_lines(parsed)).to be_an_instance_of(Array)
       end
 
-      it 'returns an array where each subarray contains four strings' do
+      it 'where each subarray contains four strings' do
         expect(separate_digit_lines(parsed)[0].length).to eq 4
         expect(separate_digit_lines(parsed)[0][0]).to be_an_instance_of(String)
       end
@@ -43,7 +45,7 @@ describe 'Banky' do
       expect(clean_digit_lines(separated)).to be_an_instance_of(Array)
     end
 
-    it 'returns an array where each subarray contains three strings' do
+    it 'where each subarray contains three strings' do
       expect(clean_digit_lines(separated)[0].length).to eq 3
     end
 
@@ -63,11 +65,42 @@ describe 'Banky' do
 
   describe '#convert_to_number_chars' do
     it 'converts a three-line subarray to a nine-digit string' do
-      expect(convert_to_number_chars(test_subarray)).to eq "123456789"
+      expect(convert_to_number_chars(test_subarray).length).to eq 9
+      expect(convert_to_number_chars(test_subarray)).to be_an_instance_of(String)
+    end
+
+    it 'replaces unrecognized characters with a question mark' do
+      expect(convert_to_number_chars(test_subarray)[6]).to eq "?"
     end
   end
 
   describe '#generate_digit_strings' do
+    it 'returns an array' do
+      expect(generate_digit_strings(cleaned)).to be_an_instance_of(Array)
+    end
 
+    it 'that is filled with strings' do
+      def string_check(parsed)
+        parsed.each do |element|
+          if element.class != String
+            return false
+          end
+        end
+        true
+      end
+      expect(string_check(generated)).to be true
+    end
+
+    it 'where each string contains nine characters' do
+      def length_check(array)
+        array.each do |string|
+          if string.length != 9
+            return false
+          end
+        end
+        true
+      end
+      expect(length_check(generated)).to be true
+    end
   end
 end
