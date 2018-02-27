@@ -1,48 +1,4 @@
-# Fun little data parsing kata from http://codingdojo.org/kata/BankOCR/
-
-
-  # Hash to convert a nine-character digit into a single number character.
-DIGIT_DICTIONARY = {
-      " _ " +
-      "| |" +
-      "|_|" => "0",
-
-      "   " +
-      "  |" +
-      "  |" => "1",
-
-      " _ " +
-      " _|" +
-      "|_ " => "2",
-
-      " _ " +
-      " _|" +
-      " _|" => "3",
-
-      "   " +
-      "|_|" +
-      "  |" => "4",
-
-      " _ " +
-      "|_ " +
-      " _|" => "5",
-
-      " _ " +
-      "|_ " +
-      "|_|" => "6",
-
-      " _ " +
-      "  |" +
-      "  |" => "7",
-
-      " _ " +
-      "|_|" +
-      "|_|" => "8",
-
-      " _ " +
-      "|_|" +
-      " _|" => "9"
-}
+require_relative 'digit_dictionary'
 
   # Creates array of strings and removes newline characters.
 def parse_txt_file(filename)
@@ -76,7 +32,6 @@ def convert_to_number_chars(multiline_digit)
   chunked.each { |digit| digits << DIGIT_DICTIONARY[digit.flatten.join] ||= "?" }
   digits
 end
-multiline_digit = [" _  _  _  _  _  _  _  _  _ ", "| || || || || || || || || |", "|_||_||_||_||_||_||_||_||_|"]
 
   # Maps the array of three-line digits into an array of nine-line strings:
 def generate_digit_strings(cleaned_multiline_digits)
@@ -84,19 +39,3 @@ def generate_digit_strings(cleaned_multiline_digits)
     convert_to_number_chars(multiline_digit)
   end
 end
-
-
-
-# ---------------------------------------------------------------------------- #
-#      Just a happy little place to manually test my initial algorithms.       #
-# ---------------------------------------------------------------------------- #
-parsed = parse_txt_file("test_digits_with_errors.txt")
-separated = separate_digit_lines(parsed)
-cleaned = clean_digit_lines(separated)
-converted = generate_digit_strings(cleaned)
-
-puts "Gross:"
-puts cleaned
-puts "\n______________\n\n"
-puts "Beautiful:\n\n"
-puts converted
