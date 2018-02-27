@@ -73,7 +73,7 @@ end
 def convert_to_number_chars(multiline_digit)
   digits = ""
   chunked = multiline_digit.map { |line| line.chars.each_slice(3).to_a }.transpose
-  chunked.each { |digit| digits << DIGIT_DICTIONARY[digit.flatten.join] }
+  chunked.each { |digit| digits << DIGIT_DICTIONARY[digit.flatten.join] ||= "?" }
   digits
 end
 multiline_digit = [" _  _  _  _  _  _  _  _  _ ", "| || || || || || || || || |", "|_||_||_||_||_||_||_||_||_|"]
@@ -90,7 +90,7 @@ end
 # ---------------------------------------------------------------------------- #
 #      Just a happy little place to manually test my initial algorithms.       #
 # ---------------------------------------------------------------------------- #
-parsed = parse_txt_file("test_digits.txt")
+parsed = parse_txt_file("test_digits_with_errors.txt")
 separated = separate_digit_lines(parsed)
 cleaned = clean_digit_lines(separated)
 converted = generate_digit_strings(cleaned)
