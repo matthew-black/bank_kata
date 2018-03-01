@@ -11,7 +11,7 @@ def calculate_checksum(digits)
   end
 end
 
-def validate_account_number(digit_string)
+def annotate_account_number(digit_string)
   if digit_string.include?("?")
       digit_string + " ILL"
     else
@@ -27,6 +27,6 @@ end
 
 def validate_account_numbers(digit_strings)
   mapped = digit_strings.map do |digit_string|
-    validate_account_number(digit_string)
+    annotate_account_number(digit_string)
   end
 end
