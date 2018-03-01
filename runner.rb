@@ -1,4 +1,5 @@
 require_relative 'lib/banky'
+require_relative 'lib/validator'
 
 # ---------------------------------------------------------------------------- #
 #      Just a happy little place to manually test my initial algorithms.       #
@@ -9,7 +10,4 @@ separated = separate_digit_lines(parsed)
 cleaned = clean_digit_lines(separated)
 converted = generate_digit_strings(cleaned)
 
-
-puts cleaned
-puts "\n______________\n\n"
-puts converted
+puts validate_account_numbers(converted)

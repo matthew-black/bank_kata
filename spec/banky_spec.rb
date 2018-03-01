@@ -1,5 +1,6 @@
 require_relative '../lib/banky'
 
+
 describe 'Banky' do
   digits = 'data/test_digits.txt'
   error_digits = 'data/test_digits_with_errors.txt'
