@@ -7,7 +7,7 @@ end
 def calculate_checksum(digits)
   digits.each_with_index.inject(0) do |sum, (digit, i)|
     current_index = i + 1
-    sum + (current_index) * digits[-current_index]
+    sum + (current_index * digits[-current_index])
   end
 end
 
