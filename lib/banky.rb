@@ -26,16 +26,15 @@ def clean_digit_lines(separated_digit_lines)
 end
 
   # Converts a three-line digit array into a nine-digit string:
-def convert_to_number_chars(multiline_digit)
-  digits = ""
+def convert_to_numbers(multiline_digit)
   chunked = multiline_digit.map { |line| line.chars.each_slice(3).to_a }.transpose
-  chunked.each { |digit| digits << DIGIT_DICTIONARY[digit.flatten.join] ||= "?" }
-  digits
+  numbers = chunked.map { |digit| DIGIT_DICTIONARY[digit.flatten.join] ||= "?" }
+  numbers.join('')
 end
 
   # Maps the array of three-line digits into an array of nine-line strings:
-def generate_digit_strings(cleaned_multiline_digits)
+def generate_number_strings(cleaned_multiline_digits)
   cleaned_multiline_digits.map do |multiline_digit|
-    convert_to_number_chars(multiline_digit)
+    convert_to_numbers(multiline_digit)
   end
 end
