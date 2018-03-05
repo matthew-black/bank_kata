@@ -7,7 +7,7 @@ describe 'Banky' do
   let (:parsed) { parse_txt_file(digits) }
   let(:separated) { separate_digit_lines(parsed) }
   let(:cleaned) { clean_digit_lines(separated) }
-  let(:generated) { generate_digit_strings(cleaned) }
+  let(:generated) { generate_number_strings(cleaned) }
   test_subarray =  ["    _  _     _  _  _  _  _ ",
                     "  | _| _||_||_ |_    |_||_|",
                     "  ||_  _|  | _||_|  ||_| _|"]
@@ -64,20 +64,20 @@ describe 'Banky' do
     end
   end
 
-  describe '#convert_to_number_chars' do
+  describe '#convert_to_numbers' do
     it 'converts a three-line subarray to a nine-digit string' do
-      expect(convert_to_number_chars(test_subarray).length).to eq 9
-      expect(convert_to_number_chars(test_subarray)).to be_an_instance_of(String)
+      expect(convert_to_numbers(test_subarray).length).to eq 9
+      expect(convert_to_numbers(test_subarray)).to be_an_instance_of(String)
     end
 
     it 'replaces unrecognized characters with a question mark' do
-      expect(convert_to_number_chars(test_subarray)[6]).to eq "?"
+      expect(convert_to_numbers(test_subarray)[6]).to eq "?"
     end
   end
 
-  describe '#generate_digit_strings' do
+  describe '#generate_number_strings' do
     it 'returns an array' do
-      expect(generate_digit_strings(cleaned)).to be_an_instance_of(Array)
+      expect(generate_number_strings(cleaned)).to be_an_instance_of(Array)
     end
 
     it 'that is filled with strings' do
