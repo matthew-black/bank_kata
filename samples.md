@@ -46,11 +46,11 @@ The first line of code inside the method uses #each_slice
 and #transform to further divide the input, then rotate it so that 
 the element at index 0 would contain the '1' digit:
 ```
-[[" ", " ", " "], [" ", " ", "|"], [" ", " ", "|"]
+[[" ", " ", " "], [" ", " ", "|"], [" ", " ", "|"]],
 ```
 and the element at index 1 would contain the '2' digit:
 ```
-[[" ", "_", " "], [" ", "_", "|"], ["|", "_", " "]
+[[" ", "_", " "], [" ", "_", "|"], ["|", "_", " "]],
 ```
 etc...
 
